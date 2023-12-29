@@ -1,0 +1,282 @@
+Create TABLE users(
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
+	full_name VARCHAR(100),
+	email VARCHAR(255),
+	pass_word VARCHAR(255)
+)
+
+INSERT INTO users (full_name, email, pass_word) VALUES
+('Emily Johnson', 'emily.j@example.com', 'pass789'),
+('Michael Brown', 'michael.b@example.com', 'passwordXYZ'),
+('Sophia Williams', 'sophia.w@example.com', 'secure123'),
+('Daniel Miller', 'daniel.m@example.com', 'pass432'),
+('Olivia Davis', 'olivia.d@example.com', 'mypassword'),
+('Matthew Taylor', 'matthew.t@example.com', 'letmein123'),
+('Emma Wilson', 'emma.w@example.com', 'password789'),
+('Andrew Anderson', 'andrew.a@example.com', 'ilovecoding'),
+('Ava Martinez', 'ava.m@example.com', '1234abcd'),
+('William Jackson', 'william.j@example.com', 'password567'),
+('Isabella Garcia', 'isabella.g@example.com', 'qwerty123'),
+('James Harris', 'james.h@example.com', 'iloveSQL'),
+('Lily Moore', 'lily.m@example.com', 'pass987'),
+('Ethan White', 'ethan.w@example.com', 'abcde123'),
+('Madison Lee', 'madison.l@example.com', 'pass654'),
+('Aiden Smith', 'aiden.s@example.com', 'mypassword123'),
+('Chloe Brown', 'chloe.b@example.com', 'chloepass'),
+('Jackson Clark', 'jackson.c@example.com', 'password999'),
+('Avery Turner', 'avery.t@example.com', 'turnerpass'),
+('Scarlett Adams', 'scarlett.a@example.com', '12345pass');
+
+SELECT * from users;
+
+CREATE TABLE restautant(
+	res_id INT PRIMARY KEY AUTO_INCREMENT,
+	res_name VARCHAR(100),
+	image VARCHAR(255),
+	decs VARCHAR(255)
+);
+
+ALTER TABLE restautant RENAME to restaurant;
+
+INSERT INTO restaurant (res_name, image, decs) VALUES
+('Cafe Bella', 'cafe_bella.jpg', 'A cozy cafe with a variety of coffee options.'),
+('Pizza Palace', 'pizza_palace.jpg', 'Home of the best pizza in town!'),
+('Sushi Haven', 'sushi_haven.jpg', 'Fresh and delicious sushi dishes.'),
+('Burger Bistro', 'burger_bistro.jpg', 'Gourmet burgers and fries.'),
+('Thai Spice', 'thai_spice.jpg', 'Authentic Thai cuisine with a touch of spice.'),
+('Mediterranean Delight', 'mediterranean_delight.jpg', 'Experience the flavors of the Mediterranean.'),
+('Taco Fiesta', 'taco_fiesta.jpg', 'Taste the excitement of Mexican street food.'),
+('Vegetarian Oasis', 'vegetarian_oasis.jpg', 'A haven for vegetarian and vegan delights.'),
+('Steakhouse Supreme', 'steakhouse_supreme.jpg', 'Premium steaks cooked to perfection.'),
+('Seafood Harbor', 'seafood_harbor.jpg', 'Fresh seafood served with a view.'),
+('Pasta Paradise', 'pasta_paradise.jpg', 'Indulge in a variety of pasta dishes.'),
+('Deli Delight', 'deli_delight.jpg', 'Classic deli sandwiches and salads.'),
+('Indian Spice', 'indian_spice.jpg', 'Savor the rich flavors of Indian cuisine.'),
+('Smoothie Spot', 'smoothie_spot.jpg', 'Refreshing smoothies and healthy snacks.'),
+('BBQ Barn', 'bbq_barn.jpg', 'BBQ favorites in a rustic setting.'),
+('Noodle Nook', 'noodle_nook.jpg', 'A diverse selection of noodle dishes.'),
+('Crepe Corner', 'crepe_corner.jpg', 'Sweet and savory crepes for every taste.'),
+('Ice Cream Emporium', 'ice_cream_emporium.jpg', 'A paradise of ice cream flavors.'),
+('Diner Daze', 'diner_daze.jpg', 'Classic American diner with comfort food.'),
+('Pho Palace', 'pho_palace.jpg', 'Delicious Vietnamese pho and more.');
+
+SELECT * from restaurant;
+
+CREATE TABLE like_res(
+ user_id INT,
+ FOREIGN key(user_id) REFERENCES users(user_id),
+ 
+ res_id INT,
+ FOREIGN key(res_id) REFERENCES restaurant(res_id),
+ 
+ date_like DATE
+);
+
+INSERT INTO like_res (user_id, res_id, date_like) VALUES
+(1, 3, '2023-01-15'),
+(2, 1, '2023-02-20'),
+(3, 5, '2023-03-10'),
+(4, 8, '2023-04-05'),
+(5, 12, '2023-05-12'),
+(1, 15, '2023-06-18'),
+(2, 18, '2023-07-22'),
+(3, 20, '2023-08-30'),
+(4, 7, '2023-09-02'),
+(5, 10, '2023-10-08'),
+(1, 2, '2023-11-15'), 
+(2, 4, '2023-12-20'),
+(3, 6, '2024-01-25'),
+(4, 9, '2024-02-28'),
+(5, 11, '2024-03-05'),
+(1, 13, '2024-04-10'),
+(2, 16, '2024-05-15'),
+(3, 19, '2024-06-20'),
+(4, 14, '2024-07-25'),
+(5, 17, '2024-08-30');
+
+SELECT * from like_res;
+
+CREATE TABLE rate_res(
+	user_id INT,
+	FOREIGN KEY(user_id) REFERENCES users(user_id),
+
+	res_id INT,
+	FOREIGN KEY(res_id) REFERENCES restaurant(res_id),
+	
+	amount INT,
+	date_rate DATE
+);
+
+INSERT INTO rate_res (user_id, res_id, amount, date_rate) VALUES
+(1, 3, 4, '2023-01-15'),
+(2, 1, 5, '2023-02-20'),
+(3, 5, 3, '2023-03-10'),
+(4, 8, 4, '2023-04-05'),
+(5, 12, 5, '2023-05-12'),
+(1, 15, 4, '2023-06-18'),
+(2, 18, 3, '2023-07-22'),
+(3, 20, 5, '2023-08-30'),
+(4, 7, 4, '2023-09-02'),
+(5, 10, 5, '2023-10-08'),
+(1, 2, 3, '2023-11-15'),
+(2, 4, 4, '2023-12-20'),
+(3, 6, 5, '2024-01-25'),
+(4, 9, 3, '2024-02-28'),
+(5, 11, 4, '2024-03-05'),
+(1, 13, 5, '2024-04-10'),
+(2, 16, 3, '2024-05-15'),
+(3, 19, 4, '2024-06-20'),
+(4, 14, 5, '2024-07-25'),
+(5, 17, 3, '2024-08-30');
+
+CREATE TABLE food(
+	food_id INT PRIMARY KEY AUTO_INCREMENT,
+	food_name VARCHAR(100),
+	image VARCHAR(255),
+	price FLOAT,
+	des VARCHAR(255),
+	type_id INT, 
+	FOREIGN KEY(type_id) REFERENCES food_type(type_id) 
+);
+
+DROP TABLE food;
+
+INSERT INTO food (food_name, image, price, des, type_id) VALUES
+('Spaghetti Bolognese', 'spaghetti_bolognese.jpg', 12.99, 'Classic Italian dish with meat sauce', 1),
+('Chicken Caesar Salad', 'chicken_caesar_salad.jpg', 8.99, 'Fresh salad with grilled chicken and Caesar dressing', 2),
+('Margherita Pizza', 'margherita_pizza.jpg', 10.99, 'Traditional pizza with tomato, mozzarella, and basil', 3),
+('Grilled Salmon', 'grilled_salmon.jpg', 15.99, 'Salmon fillet grilled to perfection', 4),
+('Vegetable Stir-Fry', 'vegetable_stir_fry.jpg', 9.99, 'Assorted vegetables stir-fried in a savory sauce', 5),
+('Cheeseburger', 'cheeseburger.jpg', 7.99, 'Classic beef patty with cheese, lettuce, and tomato', 6),
+('Caesar Wrap', 'caesar_wrap.jpg', 6.99, 'Caesar salad wrapped in a flour tortilla', 2),
+('Mushroom Risotto', 'mushroom_risotto.jpg', 13.99, 'Creamy risotto with mushrooms and Parmesan', 1),
+('BBQ Chicken Wings', 'bbq_chicken_wings.jpg', 11.99, 'Chicken wings glazed with barbecue sauce', 6),
+('Shrimp Scampi Pasta', 'shrimp_scampi_pasta.jpg', 14.99, 'Pasta with shrimp in a garlic butter sauce', 1),
+('Caprese Salad', 'caprese_salad.jpg', 8.99, 'Tomato, mozzarella, and basil salad drizzled with balsamic glaze', 2),
+('Teriyaki Chicken Bowl', 'teriyaki_chicken_bowl.jpg', 10.99, 'Grilled chicken with teriyaki sauce served over rice', 5),
+('Vegetarian Pizza', 'vegetarian_pizza.jpg', 11.99, 'Pizza loaded with assorted vegetables and cheese', 3),
+('Beef and Broccoli Stir-Fry', 'beef_and_broccoli_stir_fry.jpg', 12.99, 'Beef and broccoli stir-fried in a savory sauce', 5),
+('Cesar Club Sandwich', 'cesar_club_sandwich.jpg', 9.99, 'Club sandwich with chicken, bacon, lettuce, and Caesar dressing', 6),
+('Lobster Ravioli', 'lobster_ravioli.jpg', 16.99, 'Ravioli filled with lobster meat in a creamy sauce', 1),
+('Vegetable Sushi Roll', 'vegetable_sushi_roll.jpg', 10.99, 'Sushi roll with assorted vegetables and rice', 4),
+('Mango Tango Smoothie', 'mango_tango_smoothie.jpg', 5.99, 'Smoothie made with fresh mango and tropical fruits', 7),
+('Chocolate Lava Cake', 'chocolate_lava_cake.jpg', 7.99, 'Rich chocolate cake with a gooey molten center', 8),
+('Greek Gyro', 'greek_gyro.jpg', 8.99, 'Gyro sandwich with seasoned meat, tomatoes, and tzatziki sauce', 6);
+
+CREATE TABLE food_type(
+ type_id INT PRIMARY KEY AUTO_INCREMENT,
+ type_name VARCHAR(255)
+);
+
+INSERT INTO food_type (type_name) VALUES
+('Italian'),
+('American'),
+('Japanese'),
+('Mexican'),
+('Mediterranean'),
+('Chinese'),
+('Indian'),
+('Vegetarian'),
+('Vegan'),
+('Seafood'),
+('Burger'),
+('Pizza'),
+('Salad'),
+('Sandwich'),
+('Sushi'),
+('Dessert'),
+('Thai'),
+('Greek'),
+('BBQ'),
+('Breakfast');
+
+
+CREATE TABLE orders(
+ user_id INT,
+ FOREIGN KEY(user_id) REFERENCES users(user_id),
+ food_id INT,
+ FOREIGN KEY(food_id) REFERENCES food(food_id),
+ amount INT,
+ code VARCHAR(100),
+ arr_sub_id VARCHAR(100)
+);
+
+DROP TABLE orders
+
+INSERT INTO orders (user_id, food_id, amount, code, arr_sub_id) VALUES
+(1, 3, 2, 'ORDER123', 'SUBORDER1'),
+(2, 7, 1, 'ORDER456', 'SUBORDER2'),
+(3, 10, 3, 'ORDER789', 'SUBORDER3'),
+(4, 15, 1, 'ORDERABC', 'SUBORDER4'),
+(5, 5, 2, 'ORDERDEF', 'SUBORDER5'),
+(1, 8, 1, 'ORDERGHI', 'SUBORDER6'),
+(2, 12, 2, 'ORDERJKL', 'SUBORDER7'),
+(3, 18, 1, 'ORDERMNO', 'SUBORDER8'),
+(4, 2, 3, 'ORDERPQR', 'SUBORDER9'),
+(5, 14, 1, 'ORDERSTU', 'SUBORDER10'),
+(1, 9, 2, 'ORDERVWX', 'SUBORDER11'),
+(2, 4, 1, 'ORDERYZA', 'SUBORDER12'),
+(3, 17, 3, 'ORDERBCD', 'SUBORDER13'),
+(4, 6, 1, 'ORDEREFG', 'SUBORDER14'),
+(5, 11, 2, 'ORDERHIJ', 'SUBORDER15'),
+(1, 13, 1, 'ORDERKLM', 'SUBORDER16'),
+(2, 16, 2, 'ORDERNOP', 'SUBORDER17'),
+(3, 1, 3, 'ORDERQRS', 'SUBORDER18'),
+(4, 19, 1, 'ORDERTUV', 'SUBORDER19'),
+(5, 20, 2, 'ORDERWXY', 'SUBORDER20');
+
+
+CREATE TABLE sub_food(
+ sub_id INT PRIMARY KEY AUTO_INCREMENT,
+ sub_name VARCHAR(100),
+ sub_price FLOAT,
+ food_id INT,
+ FOREIGN KEY(food_id) REFERENCES food(food_id)
+);
+
+DROP TABLE sub_food
+
+SELECT users.full_name,COUNT(like_res.user_id) 
+from  like_res 
+INNER JOIN users on users.user_id = like_res.user_id 
+GROUP BY like_res.user_id
+ORDER BY COUNT(like_res.user_id) DESC
+LIMIT 3 ; 
+
+SELECT restaurant.res_name, COUNT(like_res.res_id)
+from like_res
+INNER JOIN restaurant on restaurant.res_id = like_res.res_id
+GROUP BY restaurant.res_id 
+ORDER BY COUNT(like_res.res_id) DESC
+LIMIT 2;
+
+SELECT users.full_name, COUNT(orders.user_id) 
+from orders
+INNER JOIN users on orders.user_id = users.user_id
+GROUP BY users.user_id 
+ORDER BY COUNT(orders.user_id) DESC 
+LIMIT 1;
+
+
+SELECT B.final_id FROM
+(SELECT A.final_id 
+FROM (SELECT users.user_id as final_id
+FROM users
+LEFT JOIN rate_res
+ON users.user_id = rate_res.user_id
+WHERE rate_res.user_id IS NULL) as A LEFT JOIN like_res
+on A.final_id = like_res.user_id WHERE like_res.user_id IS NULL)
+as B 
+LEFT JOIN orders
+on B.final_id = orders.user_id WHERE orders.user_id IS NULL
+
+SELECT * from 
+(SELECT * from 
+(SELECT users.user_id as finalId from users 
+LEFT join rate_res on users.user_id = rate_res.user_id
+WHERE rate_res.user_id is NULL) as A
+LEFT join like_res on A.finalId = like_res.user_id
+WHERE like_res.user_id is NULL) as B LEFT join orders
+on orders.user_id = B.finalId
+WHERE orders.user_id is NULL
+
